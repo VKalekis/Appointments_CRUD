@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello from html </title>
+</head>
+<body>
+
+<!--    <h1 th:text=" 'THYMELEAF'+ ${msg}"> </h1>-->
+<h1>Doctors</h1>
+<table>
+    <thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Specialty</th>
+        <th>DoB</th>
+
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="doctor : ${doctorList}">
+        <td th:text = "${doctor.firstName}"></td>
+        <td th:text = "${doctor.lastName}"></td>
+        <td th:text = "${doctor.specialty}"></td>
+        <td th:text = "${doctor.dob}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>
