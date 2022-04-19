@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/doctors/")
+@RequestMapping("/api/doctors")
 public class DoctorController {
     private DoctorService doctorService;
 
@@ -32,7 +32,7 @@ public class DoctorController {
         return doctorService.getDoctor(id);
     }
 
-    @PostMapping()
+    @PostMapping
     public Doctor addDoctor(@RequestBody Doctor doctor) {
         // Maps json to doctor object -> adds it to the DB.
         //System.out.println(doctor);
@@ -51,6 +51,15 @@ public class DoctorController {
        return doctorService.updateDoctor(id, doctor);
     }
 
+    @GetMapping ("/specialty/{spec}")
+    public List<Doctor> getDoctorsBySpecialtyPV(@PathVariable String spec) {
+        return doctorService.getDoctorsBySpecialty(spec);
+    }
+    @GetMapping ("/specialty")
+    public List<Doctor> getDoctorsBySpecialty(@RequestParam(required = true) String spec) {
+        return doctorService.getDoctorsBySpecialty(spec);
+    }
+
 //    @PutMapping("/put/{id}")
 //    public void updateDoctor(@PathVariable Long id,
 //                             @RequestParam(required = false) String first_name,
@@ -59,13 +68,6 @@ public class DoctorController {
 //        doctorService.updateDoctor(id, first_name, last_name);
 //    }
 
-//    @GetMapping("/test111")
-//    public String bootstrap(Model model) {
-////        List<Doctor> doctorList = doctorService.getDoctors();
-//        //model.addAttribute("doctorList", doctorList);
-//        model.addAttribute("msg", "HELLO frim hre!");
-//        return "test";
-//    }
 
 
 

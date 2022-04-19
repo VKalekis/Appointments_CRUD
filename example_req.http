@@ -1,0 +1,54 @@
+###
+POST http://localhost:8080/api/doctors/
+Content-Type: application/json
+
+{
+  "firstName" : "Erma",
+  "lastName" : "Boncore",
+  "specialty" : "Phychiatrist",
+  "dob" : "1971-03-01"
+}
+
+
+###
+PUT http://localhost:8080/api/doctors/2
+Content-Type: application/json
+
+{
+  "firstName" : "Maria",
+  "lastName" : "Gossart",
+  "specialty" : "Dermatologist",
+  "dob" : "1965-12-10"
+}
+
+
+###
+DELETE http://localhost:8080/api/doctors/2
+
+
+###
+POST http://localhost:8080/api/patients/
+Content-Type: application/json
+
+{
+  "firstName" : "Bill",
+  "lastName" : "Smith",
+  "dob" : "2020-01-02"
+}
+
+
+###
+POST http://localhost:8080/api/appointments
+Content-Type: application/json
+
+{
+  "doctorId" : 3,
+  "patientId" : 1,
+  "description" : "Appointment3",
+  "localDateTime" : "2013-02-08T13:00:00"
+}
+
+
+###
+DELETE http://localhost:8080/api/appointments/2
+

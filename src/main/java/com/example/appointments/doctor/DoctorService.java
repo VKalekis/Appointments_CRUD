@@ -60,4 +60,8 @@ public class DoctorService {
                 })
                 .orElseGet(() -> doctorRepository.save(doctor));
     }
+
+    public List<Doctor> getDoctorsBySpecialty(String spec) {
+        return doctorRepository.getDoctorBySpecialty(spec);
+    }
 }

@@ -1,7 +1,11 @@
 package com.example.appointments.patient;
 
+import com.example.appointments.appointment.Appointment;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Patient {
@@ -20,6 +24,16 @@ public class Patient {
     private String firstName;
     private String lastName;
     private LocalDate dob;
+
+    @OneToMany(
+            cascade = CascadeType.ALL
+    )
+    private List<Appointment> appointmentList = new ArrayList<>();
+
+    public void setAppointment(Appointment appointment) {
+        this.appointmentList.add(appointment);
+        appointment.setPatient(this);
+    }
 
     public Patient(Long id, String firstName, String lastName, LocalDate dob) {
         this.id = id;

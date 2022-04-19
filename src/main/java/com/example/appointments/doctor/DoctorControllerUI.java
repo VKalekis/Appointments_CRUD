@@ -11,10 +11,15 @@ import java.util.List;
 @Controller
 @RequestMapping("/api/doctors")
 public class DoctorControllerUI {
-    @Autowired
     private DoctorService doctorService;
 
-    @GetMapping("/ui")
+    @Autowired
+    public DoctorControllerUI(DoctorService doctorService) {
+            this.doctorService = doctorService;
+        }
+
+
+        @GetMapping("/ui")
     public String bootstrap(Model model) {
         List<Doctor> doctorList = doctorService.getDoctors();
         model.addAttribute("doctorList", doctorList);

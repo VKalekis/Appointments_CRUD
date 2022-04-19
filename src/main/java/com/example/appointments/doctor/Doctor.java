@@ -1,9 +1,11 @@
 package com.example.appointments.doctor;
 
-import com.example.appointments.test.Test;
+import com.example.appointments.appointment.Appointment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Doctor {
@@ -26,27 +28,23 @@ public class Doctor {
     private String specialty;
     private LocalDate dob;
 
-    @OneToOne(
+    @OneToMany(
             cascade = CascadeType.ALL
     )
-    @JoinColumn(name="TEST_test_id",
-                referencedColumnName = "test_id")
-    private Test test;
+    private List<Appointment> appointmentList = new ArrayList<>();
 
-    public void setTest(Test test) {
-        this.test = test;
+    public void setAppointment(Appointment appointment) {
+        this.appointmentList.add(appointment);
+        appointment.setDoctor(this);
     }
 
-    public Test getTest() {
-        return test;
-    }
 
-    public Doctor(String firstName, String lastName, String specialty, LocalDate dob, Test test) {
+
+    public Doctor(String firstName, String lastName, String specialty, LocalDate dob) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialty = specialty;
         this.dob = dob;
-        this.test = test;
     }
 
     public Doctor() {
@@ -60,12 +58,6 @@ public class Doctor {
         this.dob = dob;
     }
 
-    public Doctor(String firstName, String lastName, String specialty, LocalDate dob) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.specialty = specialty;
-        this.dob = dob;
-    }
 
     public Long getId() {
         return id;
@@ -117,7 +109,6 @@ public class Doctor {
                 ", last_name='" + lastName + '\'' +
                 ", specialty='" + specialty + '\'' +
                 ", dob=" + dob +
-                ", test=" + test +
                 '}';
     }
 }
